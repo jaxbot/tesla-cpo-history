@@ -2,8 +2,16 @@
 <html>
 <head>
 	<title>Tesla CPO History</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
+<h1>Tesla CPO History</h1>
 {{DATA}}
+<script>
+$(document).ready(function(){ $('#datat').DataTable({ paging: false }); });
+</script>
 </body>
 </html>

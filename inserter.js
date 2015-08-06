@@ -16,7 +16,7 @@ vehicles.forEach(function(vehicle) {
   }
 });
 
-var html = "<table><tr><td>VIN</td><td>Price</td><td>Year</td><td>Model</td><td>Color</td><td>Date added</td><td>Date removed</td></tr>";
+var html = "<table id='datat'><thead><tr><td>VIN</td><td>Price</td><td>Year</td><td>Model</td><td>Color</td><td>Date added</td><td>Date removed</td></tr></thead><tbody>";
 for (key in currentFlat) {
   if (!newFlat[key]) {
     currentFlat[key].date_removed = now;
@@ -24,7 +24,7 @@ for (key in currentFlat) {
   html += "<tr><td>" + currentFlat[key].model + "</td><td>" + currentFlat[key].price + "</td><td>" + currentFlat[key].year + "</td><td></td><td>" + currentFlat[key].color + "</td><td>" + currentFlat[key].date_added + "</td><td>" + currentFlat[key].date_removed + "</td></tr>";
 
 }
-html += "</table>";
+html += "</tbody></table>";
 
 fs.writeFileSync("output.json", JSON.stringify(currentFlat));
 
