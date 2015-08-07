@@ -12,12 +12,33 @@ module.exports = function(data) {
     var year = tagline[0];
     var miles = tagline[1];
     var model = tagline[2];
+
+    console.log(vehicle);
+    var battery = vehicle.split("data-battery=\"")[1].split("\"")[0];
+    battery = getBattery(battery);
     vehicles_array.push({
       year: year,
       miles: miles,
       price: price,
       model: model,
+      battery: battery,
     });
   }
   return vehicles_array;
+}
+
+function getBattery(battery) {
+  switch (battery) {
+    case "BT60":
+      return "S60";
+    case "BT85":
+      return "S85";
+    case "PBT85":
+      return "P85";
+    case "perf":
+      console.log("perffff");
+      return "P85";
+    default:
+      return battery;
+  }
 }

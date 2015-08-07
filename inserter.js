@@ -21,7 +21,7 @@ for (key in currentFlat) {
   if (!newFlat[key]) {
     currentFlat[key].date_removed = now;
   }
-  html += "<tr><td>" + currentFlat[key].model + "</td><td>" + currentFlat[key].price + "</td><td>" + currentFlat[key].year + "</td><td></td><td>" + currentFlat[key].color + "</td><td>" + currentFlat[key].date_added + "</td><td>" + currentFlat[key].date_removed + "</td></tr>";
+  html += "<tr><td>" + currentFlat[key].model + "</td><td>" + currentFlat[key].price + "</td><td>" + currentFlat[key].year + "</td><td>" + currentFlat[key].battery + "</td><td>" + currentFlat[key].color + "</td><td>" + currentFlat[key].date_added + "</td><td>" + currentFlat[key].date_removed + "</td></tr>";
 
 }
 html += "</tbody></table>";
