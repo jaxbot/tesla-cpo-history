@@ -1,3 +1,5 @@
+var COLORS = {};
+var http = require('http');
 module.exports = function(data) {
   var html = data['2'].data;
   var vehicles = html.split("<a class=\"vehicle");
@@ -13,7 +15,6 @@ module.exports = function(data) {
     var miles = tagline[1];
     var model = tagline[2];
 
-    console.log(vehicle);
     var battery = vehicle.split("data-battery=\"")[1].split("\"")[0];
     battery = getBattery(battery);
     vehicles_array.push({
@@ -36,7 +37,6 @@ function getBattery(battery) {
     case "PBT85":
       return "P85";
     case "perf":
-      console.log("perffff");
       return "P85";
     default:
       return battery;
