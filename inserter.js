@@ -9,26 +9,33 @@ var newFlat = {};
 var now = Math.floor((new Date).getTime() / 1000);
 
 var vehicles = parser(data);
-var semaphore = 0;
+var semaphore = 1;
 vehicles.forEach(function(vehicle) {
   if (!currentFlat[vehicle.model]) {
     vehicle.date_added = now;
     currentFlat[vehicle.model] = vehicle;
     newFlat[vehicle.model] = vehicle;
   }
+  if (!currentFlat[vehicle.model].extras) {
+    currentFlat[vehicle.model].extras = {};
+  }
   semaphore++;
   detailedParser(vehicle.model, function(extras) {
-    vehicle.extras = extras;
+    currentFlat[vehicle.model].extras = extras;
     semaphore--;
     if (semaphore === 0) {
-      console.log("SEMAAAA");
       render();
     }
   });
 });
+if (semaphore === 1) {
+  render();
+} else {
+  semaphore--;
+}
 
 function render() {
-  var html = "<table id='datat'><thead><tr><td>VIN</td><td>Price</td><td>Year</td><td>Model</td><td>Color</td><td>Date 3dded</td><td>Date removed</td></tr></thead><tbody>";
+  var html = "<table id='datat'><thead><tr><td>VIN</td><td>Price</td><td>Year</td><td>Model</td><td>Color</td><td>Date added</td><td>Date removed</td></tr></thead><tbody>";
   for (key in currentFlat) {
     if (!newFlat[key]) {
       currentFlat[key].date_removed = now;
