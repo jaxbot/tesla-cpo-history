@@ -4,11 +4,12 @@ var fs = require("fs");
 var URL = "http://www.teslamotors.com/models/preowned/";
 
 module.exports = function(model, callback) {
-  console.log("SCR");
   try {
     callback(fs.readFileSync("stored_cars/" + model).toString());
   } catch (e) {
-    return;
+    console.log(model);
+    console.log(e);
+    console.log("SCR");
     var options = {
       hostname: "www.teslamotors.com",
       path: "/models/preowned/" + model,
