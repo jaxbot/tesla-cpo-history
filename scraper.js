@@ -70,6 +70,7 @@ function fetchAllCars(formKey) {
         fetched++;
         if (fetched == HUBS.length) {
           fs.writeFileSync("file.json", JSON.stringify(dataFromAllHubs));
+          fs.writeFileSync("backups/file_" + now +".json", JSON.stringify(dataFromAllHubs));
         }
       });
     });
