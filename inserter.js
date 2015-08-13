@@ -45,7 +45,7 @@ function render() {
       console.log(newFlat[key]);
       currentFlat[key].date_removed = 0;
     }
-    html += "<tr><td>" + currentFlat[key].model + "</td><td>" + currentFlat[key].price + "</td><td>" + currentFlat[key].year + "</td><td>" + currentFlat[key].battery + "</td><td>" + currentFlat[key].extras.color + "</td><td>" + currentFlat[key].date_added + "</td><td>" + currentFlat[key].date_removed + "</td></tr>";
+    html += "<tr><td>" + currentFlat[key].model + "</td><td>" + currentFlat[key].price + "</td><td>" + currentFlat[key].year + "</td><td>" + currentFlat[key].battery + "</td><td>" + currentFlat[key].extras.color + "</td><td>" + prettyTime(currentFlat[key].date_added) + "</td><td>" + prettyTime(currentFlat[key].date_removed) + "</td></tr>";
 
   }
   html += "</tbody></table>";
@@ -55,4 +55,16 @@ function render() {
   var template = fs.readFileSync("template.html").toString();
   template = template.replace("{{DATA}}", html);
   fs.writeFileSync("output.html", template);
+}
+
+function prettyTime(time) {
+  if (time === 0) {
+	return "N/A";
+  }
+  var date = new Date(time * 1000);
+  var month = date.getMonth() + 1;
+  var dayofmonth = date.getDate();
+  var year = (date.getYear() - 100) + 2000;
+
+  return year + "-" + month + "-" + dayofmonth;
 }
